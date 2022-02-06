@@ -90,9 +90,10 @@ const SongApp = () => {
 
   const handleOpenFavoriteSong = (song) => {
     setErrors(null);
-    navigate("/songdetails");
     setLyric(song.lyric);
     setArtist(song.artist);
+    setSearch(song.search);
+    navigate("/songdetails");
   };
 
   return (

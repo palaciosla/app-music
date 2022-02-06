@@ -21,10 +21,12 @@ const SongFavoriteTableRow = ({
       <TableCell sx={{ textTransform: "capitalize" }}>
         {song.search.song}
       </TableCell>
-      <TableCell sx={{ display: "flex", borderBottom: "none" }}>
+      <TableCell
+        sx={{ display: "flex", borderBottom: "none", alignItems: "center" }}
+      >
         <IconButton
           aria-label="delete"
-          color="secondary"
+          sx={{ color: "#9eadf8" }}
           size="small"
           onClick={() => handleOpenFavoriteSong(song)}
         >

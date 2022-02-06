@@ -21,7 +21,7 @@ const DetailsSong = ({
   handleAddFavoritesSong,
   myFavoritesSong,
   errors,
-  setErrors
+  setErrors,
 }) => {
   const [selected, setSelected] = useState(false);
 
@@ -66,7 +66,15 @@ const DetailsSong = ({
                 artistInfo.intDiedYear ? artistInfo.intDiedYear : "Presente"
               }
            `}
-              action={<Button aria-label="settings">Sitio Oficial</Button>}
+              action={
+                <Button
+                  aria-label="settings"
+                  href={`https://${artistInfo.strWebsite}`}
+                  target="_blank"
+                >
+                  Sitio Oficial
+                </Button>
+              }
             />
             <CardMedia
               component="img"
@@ -110,7 +118,7 @@ const DetailsSong = ({
           </Card>
         </Box>
       ) : (
-        <ErrorMessage errors={errors} search={search} setErrors={setErrors}/>
+        <ErrorMessage errors={errors} search={search} setErrors={setErrors} />
       )}
     </>
   );
