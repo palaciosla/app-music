@@ -15,11 +15,13 @@ const SongApp = () => {
   const [myFavoritesSong, setMyFavoritesSong] = useState(
     JSON.parse(localStorage.getItem("myFavoritesSongs")) || []
   );
-  // const [isFavorite, setIsFavorite] = useState(false);
 
   let navigate = useNavigate();
 
   const handleSearch = (data) => {
+    setErrors(null);
+    setArtist(null);
+    setLyric(null);
     setSearch(data);
   };
 
@@ -49,6 +51,8 @@ const SongApp = () => {
         setLyric(resSong);
       } catch (error) {
         setErrors(error);
+        setArtist(undefined);
+        setLyric(undefined);
       }
     };
 
@@ -85,6 +89,7 @@ const SongApp = () => {
   };
 
   const handleOpenFavoriteSong = (song) => {
+    setErrors(null);
     navigate("/songdetails");
     setLyric(song.lyric);
     setArtist(song.artist);
@@ -111,6 +116,7 @@ const SongApp = () => {
               myFavoritesSong={myFavoritesSong}
               handleAddFavoritesSong={handleAddFavoritesSong}
               errors={errors}
+              setErrors={setErrors}
             />
           }
         />

@@ -33,8 +33,8 @@ const SongFavoriteTable = ({ myFavoritesSong, handleDeleteFavoriteSong, handleOp
             <TableCell colSpan={2} align="center">
               Artist
             </TableCell>
-            <TableCell align="right">Song</TableCell>
-            <TableCell align="right">Actions</TableCell>
+            <TableCell align="center">Song</TableCell>
+            <TableCell align="center">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

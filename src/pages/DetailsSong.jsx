@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Card,
@@ -12,37 +12,42 @@ import {
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Loader from "../components/Loader";
-import ErrorMessage from "../components/ErrorMessage"
+import ErrorMessage from "../components/ErrorMessage";
 
 const DetailsSong = ({
   artist,
   lyric,
   search,
-  isLoading,
   handleAddFavoritesSong,
   myFavoritesSong,
-  errors
+  errors,
+  setErrors
 }) => {
   const [selected, setSelected] = useState(false);
 
-  console.log(errors)
   if (artist === null || lyric === null) return <Loader />;
-  let artistInfo = artist.data.artists[0];
-  let lyricInfo = lyric.data.lyrics;
+
+  let lyricInfo;
+  let artistInfo;
+
+  if (artist && lyric) {
+    lyricInfo = lyric.data.lyrics;
+    artistInfo = artist.data.artists[0];
+  }
 
   let favorite;
 
-  myFavoritesSong.forEach((song) =>
-    song.lyric.data.lyrics === lyricInfo
-      ? (favorite = true)
-      : (favorite = false)
-  );
+  if (!errors) {
+    myFavoritesSong.forEach((song) =>
+      song.lyric.data.lyrics === lyricInfo
+        ? (favorite = true)
+        : (favorite = false)
+    );
+  }
 
   return (
     <>
-      {isLoading ? (
-        <ErrorMessage />
-      ) : (
+      {!errors ? (
         <Box
           sx={{
             display: "flex",
@@ -104,6 +109,8 @@ const DetailsSong = ({
             </CardActions>
           </Card>
         </Box>
+      ) : (
+        <ErrorMessage errors={errors} search={search} setErrors={setErrors}/>
       )}
     </>
   );
