@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import SongForm from "../components/SongForm";
 
-const Home = () => {
-  const [search, setSearch] = useState(null);
-  const [lyric, setLyric] = useState(null);
-  const [bio, setBio] = useState(null);
+const Home = ({handleSearch, setIsLoading}) => {
+  
 
-  const handleSearch = data => {
-      setSearch(data)
-  }
-
-  return <SongForm handleSearch={handleSearch} />;
+  return <SongForm handleSearch={handleSearch} setIsLoading={setIsLoading} />;
 };
 
 export default Home;

@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import Container from "@mui/material/Container";
 import FormControl from "@mui/material/FormControl";
-import { TextField, Paper, Button, Stack } from "@mui/material";
+import { TextField, Paper, Button, Stack, Typography, Alert } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 let initialForm = {
   artist: "",
   song: "",
 };
 
-const SongForm = ({ handleSearch }) => {
+
+
+const SongForm = ({ handleSearch, setIsLoading }) => {
   const [form, setForm] = useState(initialForm);
+  const [error, setError] = useState(false);
+
+  let navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({
@@ -20,16 +26,18 @@ const SongForm = ({ handleSearch }) => {
   };
 
   const handleSubmit = (e) => {
-    console.log("funciona");
     e.preventDefault();
-    // setForm({
-    //     ...form,
-    //     [e.target.name]: e.target.value
-    // })
+
+    if(!form.artist || !form.song) {
+      return setError(true)
+    }
+    navigate("/songdetails")
+    handleSearch(form);
+    setForm(initialForm);
   };
 
   return (
-    <Container sx={{ display: "flex", minHeight: "90vh", width: "100%" }}>
+    <Container sx={{ display: "flex", minHeight: "80vh", width: "100%" }}>
       <Paper
         sx={{
           width: "auto",
@@ -38,12 +46,14 @@ const SongForm = ({ handleSearch }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          bgcolor: "#ebefff"
         }}
         elevation={3}
       >
         {" "}
         <form onSubmit={handleSubmit}>
           <FormControl sx={{ padding: 5 }}>
+            <Typography variant="button" color="primary" mb={2} align="center">song finder</Typography>
             <Stack
               direction="column"
               justifyContent="center"
@@ -67,13 +77,14 @@ const SongForm = ({ handleSearch }) => {
               <Button
                 type="submit"
                 variant="contained"
-                color="secondary"
+                sx={{bgcolor: "#9eadf8"}}
                 endIcon={<SearchOutlined />}
                 margin="dense"
               >
-                Buscar
+                Search
               </Button>
             </Stack>
+        {error && <Alert severity="error" sx={{marginTop: 5}}>The form must be completed!</Alert>}
           </FormControl>
         </form>
       </Paper>
