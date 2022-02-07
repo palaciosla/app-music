@@ -73,7 +73,14 @@ const DetailsSong = ({
             margin: "50px 0",
           }}
         >
-          <Card sx={{ maxWidth: 800 }}>
+          <Card
+            sx={{
+              width: "90%",
+              minWidth: "200px",
+              maxWidth: "550px",
+              backgroundColor: "#ebefff",
+            }}
+          >
             <CardHeader
               sx={{ textTransform: "capitalize" }}
               title={artistInfo.strArtist || search.artist}
