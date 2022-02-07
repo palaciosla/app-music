@@ -5,6 +5,7 @@ import SongNavigation from "../components/SongNavigation";
 import Favourites from "../pages/Favourites";
 import DetailsSong from "../pages/DetailsSong";
 import axios from "axios";
+import Footer from "./Footer";
 
 const SongApp = () => {
   const [search, setSearch] = useState(null);
@@ -131,6 +132,7 @@ const SongApp = () => {
           }
         />
       </Routes>
+      <Footer />
     </>
   );
 };
