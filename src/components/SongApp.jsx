@@ -49,6 +49,7 @@ const SongApp = () => {
         setIsLoading(false);
         setArtist(resArtist);
         setLyric(resSong);
+        console.log(resArtist)
       } catch (error) {
         setErrors(error);
         setArtist(undefined);

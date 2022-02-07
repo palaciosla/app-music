@@ -30,9 +30,21 @@ const DetailsSong = ({
   let lyricInfo;
   let artistInfo;
 
-  if (artist && lyric) {
+  let artistSinDatos = {
+    strArtist: [search.artist],
+    strCountry: "Sin datos",
+    strArtistThumb:
+      "https://i.pinimg.com/236x/3c/c9/ea/3cc9eadee80494adf4060b0526be6a34.jpg",
+  };
+
+  if (lyric) {
     lyricInfo = lyric.data.lyrics;
+  }
+
+  if (artist.data.artists) {
     artistInfo = artist.data.artists[0];
+  } else {
+    artistInfo = artistSinDatos;
   }
 
   let favorite;
@@ -59,17 +71,18 @@ const DetailsSong = ({
         >
           <Card sx={{ maxWidth: 800 }}>
             <CardHeader
-              title={artistInfo.strArtist}
-              subheader={`${artistInfo.strCountry}
-          ${artistInfo.strGenre}
-          ${artistInfo.intBornYear} - ${
+              sx={{ textTransform: "capitalize" }}
+              title={artistInfo.strArtist || search.artist}
+              subheader={`${artistInfo.strCountry || "Sin datos"}
+          ${artistInfo.strGenre || "Sin datos"}
+          ${artistInfo.intBornYear || "Sin datos"} - ${
                 artistInfo.intDiedYear ? artistInfo.intDiedYear : "Presente"
               }
            `}
               action={
                 <Button
                   aria-label="settings"
-                  href={`https://${artistInfo.strWebsite}`}
+                  href={`https://${artistInfo.strWebsite || null}`}
                   target="_blank"
                 >
                   Sitio Oficial
@@ -78,9 +91,9 @@ const DetailsSong = ({
             />
             <CardMedia
               component="img"
-              alt={artistInfo.strArtist}
+              alt={artistInfo.strArtist || search.artist}
               height="300"
-              image={artistInfo.strArtistThumb}
+              image={artistInfo.strArtistThumb || null}
             />
             <CardContent>
               <Typography
@@ -89,7 +102,7 @@ const DetailsSong = ({
                 component="div"
                 sx={{ textTransform: "capitalize" }}
               >
-                {search.song}
+                {search.song || "Sin datos"}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {lyricInfo}
