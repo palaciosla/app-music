@@ -41,10 +41,14 @@ const DetailsSong = ({
     lyricInfo = lyric.data.lyrics;
   }
 
-  if (artist.data.artists) {
-    artistInfo = artist.data.artists[0];
-  } else {
+  if (
+    artist === undefined ||
+    artist.data.artists === null ||
+    artist.data.artists === undefined
+  ) {
     artistInfo = artistSinDatos;
+  } else {
+    artistInfo = artist.data.artists[0];
   }
 
   let favorite;
@@ -85,7 +89,7 @@ const DetailsSong = ({
                   href={`https://${artistInfo.strWebsite || null}`}
                   target="_blank"
                 >
-                  Sitio Oficial
+                  Web Site
                 </Button>
               }
             />

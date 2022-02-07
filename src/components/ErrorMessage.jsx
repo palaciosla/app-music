@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 
-function ErrorMessage(errors, setErrors) {
+function ErrorMessage({ errors, search, setErrors }) {
   const [open, setOpen] = React.useState(errors ? true : false);
 
   let navigate = useNavigate();
@@ -40,7 +40,10 @@ function ErrorMessage(errors, setErrors) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {`No pudimos encontrar la canción`}
+            No pudimos encontrar la cancion{" "}
+            <span style={{ textTransform: "capitalize" }}>"{search.song}"</span>{" "}
+            de{" "}
+            <span style={{ textTransform: "capitalize" }}>{search.artist}</span>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

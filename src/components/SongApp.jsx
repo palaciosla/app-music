@@ -49,7 +49,6 @@ const SongApp = () => {
         setIsLoading(false);
         setArtist(resArtist);
         setLyric(resSong);
-        console.log(resArtist)
       } catch (error) {
         setErrors(error);
         setArtist(undefined);
@@ -83,7 +82,6 @@ const SongApp = () => {
 
     if (isDelete) {
       let songs = myFavoritesSong.filter((el) => el.idFavorite !== id);
-      console.log(songs);
       setMyFavoritesSong(songs);
       localStorage.setItem("myFavoritesSongs", JSON.stringify(songs));
     }
