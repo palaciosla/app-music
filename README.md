@@ -2,6 +2,9 @@
 
 Buscador de canciones hecho con React y Material UI. Consulta 2 APIs en simultáneo con Axios. Tiene una navegación en donde se puede visualizar las 3 áreas de la app. Formulario de consulta, Card de la letra y artista y tabla de favoritos. Los favoritos quedan guardados en localStorage
 
+### Demo
+https://buscador-de-musica-react.netlify.app/
+
 ![Image](https://github.com/palaciosla/portfolio-01/blob/main/src/img/buscador-preview.png)
 
 
